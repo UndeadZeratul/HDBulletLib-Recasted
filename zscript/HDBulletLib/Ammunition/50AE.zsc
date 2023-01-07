@@ -27,7 +27,7 @@
 // 	States
 // 	{
 // 		Spawn:
-// 			PBRS A 2 NoDelay
+// 			PBRS B 2 NoDelay
 // 			{
 // 				A_SetRoll(roll + 45, SPF_INTERPOLATE);
 // 			}
