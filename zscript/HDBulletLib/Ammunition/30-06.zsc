@@ -26,13 +26,13 @@ class ThirtyAughtSixAmmo:HDRoundAmmo{
 	}
 	bool uas;
 	override void SplitPickup(){
-		SplitPickupBoxableRound(10,uas?int.max:40,"HD3006BoxPickup","TEN7A0","RBRSA0");
+		SplitPickupBoxableRound(10,uas?int.max:40,"HD3006BoxPickup","TEN7A0","7RNDA0");
 		if(amount==10){ scale.y=0.82; scale.x=0.7; }
 		else {scale.x = 0.86; scale.y=0.8; }
 	}
 	states{
 	spawn:
-		RBRS A -1;
+		7RND A -1;
 		TEN7 A -1;
 	}
 }
