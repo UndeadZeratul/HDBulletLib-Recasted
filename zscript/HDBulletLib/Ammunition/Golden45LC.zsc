@@ -225,7 +225,8 @@ class HDSpentGold45lcb:HDUPK{
 		bouncetype "doom";
 		hdupk.pickuptype "G45LCBrass";
 		hdupk.pickupmessage "$PICKUP_G45LCCASING";
-		scale 0.3;
+		// [UZ] Scaling will be handled in the TEXTURE lump
+		//scale 0.3;
 		maxstepheight 0.6;
 		bouncefactor 0.4;
 		bouncesound "misc/casing";
@@ -253,17 +254,18 @@ class HDSpentGold45lcb:HDUPK{
 
 class HDSpentGold45lc:HDDebris{
 	default{
-		scale 0.3;
+		// [UZ] Scaling will be handled in the TEXTURE lump
+		//scale 0.3;
 
 		bouncesound "misc/casing";
 	}
 	states{
 	spawn:
-		C45G A 2 nodelay{
+		C45G B 2 nodelay{
 			A_SetRoll(roll+45,SPF_INTERPOLATE);
 		}loop;
 	death:
-		TNT1 # -1 A_SpawnItemEX('HDSpentGold45lc');
+		C45G # -1 A_SpawnItemEX('HDSpentGold45lc');
 	}
 }
 
@@ -275,13 +277,15 @@ class G45LCBrass:HDAmmo{
 		height 16;radius 8;
 		tag "$TAG_G45LCCASING";
 		hdpickup.bulk ENC_9*1.5;
-		xscale 0.7;yscale 0.8;
 		inventory.pickupmessage "$PICKUP_G45LCCASING";
 		inventory.icon "C45GA0";
+
+		// [UZ] Scaling will be handled in the TEXTURE lump
+		//scale 0.3;
 	}
 	states{
 	spawn:
-		C45G A -1;
+		C45G B -1;
 		stop;
 	}
 }
@@ -294,8 +298,10 @@ class HDGold45LCAmmo:HDRoundAmmo{
 		+rollsprite +rollcenter
 		+hdpickup.multipickup
 
-		scale 0.4;
-
+		// [UZ] Scaling will be handled in the TEXTURE lump
+		/*xscale 0.4;
+		yscale 0.4;*/
+		
 		inventory.pickupmessage "$PICKUP_GOLD45LC";
 		hdpickup.refid "45g";
 		tag "$TAG_G45LC";
@@ -318,7 +324,8 @@ class HDGold45lcBoxPickup:HDUPK{
 		//$Title "Box of gold .45"
 		//$Sprite "GLBXA0"
 
-		scale 0.4;
+		// [UZ] Scaling will be handled in the TEXTURE lump
+		//scale 0.4;
 
 		hdupk.amount 12;
 		hdupk.pickupsound "weapons/pocket";
