@@ -217,12 +217,29 @@ class HDB_45lc:HDBulletActor{
 
 }
 
-class HDSpent45LC:HDSpent9mm{default{xscale 0.75; yscale 1.0;}}
+class HDSpent45LC:HDSpent9mm{
+    default{
+        // [UZ] Scaling will be handled by the TEXTURE lump
+        //xscale 0.75; yscale 1.0;
+    }
+	states{
+	spawn:
+		CS45 B 2 nodelay{
+			A_SetRoll(roll+45,SPF_INTERPOLATE);
+		}loop;
+	death:
+		CS45 # -1;
+		stop;
+	}
+}
 
 class HD45LCAmmo:HDRoundAmmo{
 	default{
-		xscale 0.8;
-		yscale 1.0;
+	
+	    // [UZ] Scaling will be handled by the TEXTURE lump
+		/*xscale 0.8;
+		yscale 1.0;*/
+
 		+forcexybillboard
 		inventory.pickupmessage "$PICKUP_45LC";
 		hdpickup.refid "45L";
@@ -232,20 +249,21 @@ class HD45LCAmmo:HDRoundAmmo{
 		inventory.icon "T10MA0";
 	}
 	override void SplitPickup(){
-	  SplitPickupBoxableRound(10, 50, "HD45LCBoxPickup",  "T10MA0", "PR10A0");
+	  SplitPickupBoxableRound(10, 50, "HD45LCBoxPickup",  "TN45A0", "RN45A0");
 	}
-	states{	
+	states{
 	spawn:
-		PR10 A -1;
-		T10M A -1;
+		RN45 A -1;
+		TN45 A -1;
 	}
-
 }
+
 class HD45LCBoxPickup:HDUPK{
 	default{
 		//$Category "Ammo/Hideous Destructor/"
 		//$Title "Box of .45"
 		//$Sprite "45LBA0"
+
 		scale 0.4;
 		hdupk.amount 50;
 		hdupk.pickupsound "weapons/pocket";
