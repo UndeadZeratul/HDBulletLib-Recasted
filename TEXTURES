@@ -1132,28 +1132,44 @@ Sprite "BX10A0", 30, 14
 	Patch "BX10A0", 0, 0
 }
 
-Sprite "CS10A0", 11, 17
+Sprite "CS10A0", 9, 20
+{
+	XScale 5.000
+	YScale 5.000
+	Offset 4, 20
+	Patch "PR10A0", 0, 0
+}
+
+Sprite "CS10B0", 11, 17
 {
 	XScale 5.000
 	YScale 5.000
 	Offset 5, 17
-	Patch "CS10A0", 0, 0
-}
-
-Sprite "CS10B0", 16, 15
-{
-	XScale 5.000
-	YScale 5.000
-	Offset 8, 15
 	Patch "CS10B0", 0, 0
 }
 
-Sprite "PR10A0", 9, 22
+Sprite "CS45A0", 9, 20
 {
 	XScale 5.000
 	YScale 5.000
 	Offset 4, 22
 	Patch "PR10A0", 0, 0
+}
+
+Sprite "CS45B0", 11, 17
+{
+	XScale 5.000
+	YScale 5.000
+	Offset 5, 17
+	Patch "CS10B0", 0, 0
+}
+
+Sprite "PR10A0", 9, 20
+{
+	XScale 5.000
+	YScale 5.000
+	Offset 4, 20
+	Patch "PR10A0", 0, -2
 }
 
 Sprite "T10MA0", 54, 24
@@ -1164,27 +1180,43 @@ Sprite "T10MA0", 54, 24
 	Patch "T10MA0", 0, 0
 }
 
-Sprite "C45GA0", 11, 17
+Sprite "RN45A0", 9, 20
 {
-	XScale 2.000
-	YScale 2.000
-	Offset 5, 17
-	Patch "C45GA0", 0, 0
+	XScale 5.000
+	YScale 5.000
+	Offset 4, 20
+	Patch "PR10A0", 0, 0
 }
 
-Sprite "C45GB0", 16, 15
+Sprite "TN45A0", 54, 24
 {
-	XScale 2.000
-	YScale 2.000
-	Offset 8, 15
+	XScale 5.000
+	YScale 5.000
+	Offset 27, 24
+	Patch "T10MA0", 0, 0
+}
+
+Sprite "C45GA0", 9, 22
+{
+	XScale 5.000
+	YScale 5.000
+	Offset 5, 22
+	Patch "GC45A0", 0, 0
+}
+
+Sprite "C45GB0", 11, 16
+{
+	XScale 5.000
+	YScale 5.000
+	Offset 6, 16
 	Patch "C45GB0", 0, 0
 }
 
 Sprite "GC45A0", 9, 22
 {
-	XScale 2.000
-	YScale 2.000
-	Offset 4, 22
+	XScale 5.000
+	YScale 5.000
+	Offset 5, 22
 	Patch "GC45A0", 0, 0
 }
 

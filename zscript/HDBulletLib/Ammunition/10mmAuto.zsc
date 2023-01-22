@@ -26,8 +26,11 @@ class HD10mAmmo:HDRoundAmmo{//10mm ammo pickup
 		+forcexybillboard
 		+rollsprite +rollcenter
 		+hdpickup.multipickup
-		xscale 0.7;
-		yscale 0.6;
+
+		// [UZ] Scaling will be handled in the TEXTURE lump
+		/*xscale 0.7;
+		yscale 0.6;*/
+
 		inventory.pickupmessage "$PICKUP_10MM";
 		hdpickup.refid "10M";
 		tag "$TAG_10MMAUTO";
@@ -51,11 +54,14 @@ class TenMilBrass:HDAmmo{
 		+inventory.ignoreskill +forcexybillboard +cannotpush
 		+hdpickup.multipickup
 		+hdpickup.cheatnogive
+
+		// [UZ] Scaling will be handled in the TEXTURE lump
+		// xscale 0.7;yscale 0.8;
+
 		height 16;radius 8;
 		tag "$TAG_10MMCASING";
 		hdpickup.refid "c10";
 		hdpickup.bulk ENC_776B;
-		xscale 0.7;yscale 0.8;
 		inventory.pickupmessage "$PICKUP_10MMBRASS";
 		inventory.icon "CS10B0";
 	}
@@ -70,6 +76,12 @@ class HDSpent10mm:HDUPK{
 	default{
 		+missile
 		+hdupk.multipickup
+		+forcexybillboard;
+		+rollsprite;+rollcenter;
+
+		// [UZ] Scaling will be handled in the TEXTURE lump
+		// xscale 0.7;yscale 0.8;
+
 		height 4;radius 2;
 		bouncetype "doom";
 		hdupk.pickuptype "TenMilBrass";
@@ -78,7 +90,6 @@ class HDSpent10mm:HDUPK{
 
 		bouncesound "misc/casing";
 		bouncefactor 0.4;
-		xscale 0.7;yscale 0.8;
 		maxstepheight 0.6;
 	}
 	vector3 lastvel;
@@ -88,12 +99,13 @@ class HDSpent10mm:HDUPK{
 	}
 	states{
 	spawn:
-		CS10 A 2{
-			if(bseesdaggers)angle-=45;else angle+=45;
+		CS10 B 2 nodelay{
+			A_SetRoll(roll+45,SPF_INTERPOLATE);
+			//if(bseesdaggers)angle-=45;else angle+=45;
 			if(pos.z-floorz<2&&abs(vel.z)<2.)setstatelabel("death");
-		}wait;
+		}loop;
 	death:
-		CS10 B -1{
+		CS10 # -1{
 			bmissile=false;
 			vel.xy+=(pos.xy-prev.xy)*max(abs(vel.z),abs(prev.z-pos.z),1.);
 			if(vel.xy==(0,0)){
@@ -116,6 +128,10 @@ class HDLoose10mm:HDSpent10mm{
 		bouncefactor 0.5;
 	}
 	states{
+	spawn:
+		CS10 A 2 nodelay{
+			A_SetRoll(roll+45,SPF_INTERPOLATE);
+		}loop;
 	death:
 		TNT1 A 1{
 			actor a=spawn("HD10mAmmo",self.pos,ALLOW_REPLACE);
