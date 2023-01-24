@@ -250,7 +250,7 @@ class HDGold45LCAmmo:HDRoundAmmo{
 		hdpickup.refid "45g";
 		tag "$TAG_G45LC";
 		hdpickup.bulk ENC_9*3;
-		inventory.icon "GLBXA0";
+		inventory.icon "GC45A0";
 	}
 	override void SplitPickup(){
 		SplitPickupBoxableRound(6,12,"HDGold45lcBoxPickup","GSIXA0","GC45A0");
