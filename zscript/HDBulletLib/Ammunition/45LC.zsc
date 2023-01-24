@@ -218,10 +218,10 @@ class HDB_45lc:HDBulletActor{
 }
 
 class HDSpent45LC:HDSpent9mm{
-    default{
-        // [UZ] Scaling will be handled by the TEXTURE lump
-        //xscale 0.75; yscale 1.0;
-    }
+	default{
+		// [UZ] Scaling will be handled by the TEXTURE lump
+		//xscale 0.75; yscale 1.0;
+	}
 	states{
 	spawn:
 		CS45 B 2 nodelay{
@@ -236,7 +236,7 @@ class HDSpent45LC:HDSpent9mm{
 class HD45LCAmmo:HDRoundAmmo{
 	default{
 	
-	    // [UZ] Scaling will be handled by the TEXTURE lump
+		// [UZ] Scaling will be handled by the TEXTURE lump
 		/*xscale 0.8;
 		yscale 1.0;*/
 
@@ -246,7 +246,7 @@ class HD45LCAmmo:HDRoundAmmo{
 		+HDPICKUP.MULTIPICKUP
 		tag "$TAG_45LC";
 		hdpickup.bulk ENC_355*2;
-		inventory.icon "T10MA0";
+		inventory.icon "TN45A0";
 	}
 	override void SplitPickup(){
 	  SplitPickupBoxableRound(10, 50, "HD45LCBoxPickup",  "TN45A0", "RN45A0");
