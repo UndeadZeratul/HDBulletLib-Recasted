@@ -7,13 +7,14 @@ class HDExplosiveShellAmmo:HDRoundAmmo{
 		+inventory.ignoreskill
 		+hdpickup.multipickup
 
-		scale 0.3;
+		// [UZ] Scale will be handled in the TEXTURES lump
+		//scale 0.3;
 
 		tag "$TAG_EXPLSHL";
 		hdpickup.refid "xsh";
 		hdpickup.bulk ENC_SHELL;
 		inventory.pickupmessage "$PICKUP_EXPLOSIVESLUG";
-		inventory.icon "XLS4A0";
+		inventory.icon "XLS1A0";
 	}
 	override void GetItemsThatUseThis(){
 		itemsthatusethis.push("ExplosiveHunter");
