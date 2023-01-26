@@ -94,11 +94,11 @@ class HDSpent069Bore:HDDebris{
 	}
 	states{
 	spawn:
-		42BR A 2 nodelay{
+		42BS A 2 nodelay{
 			A_SetRoll(roll+45,SPF_INTERPOLATE);
 		}loop;
 	death:
-		42BR # -1;
+		42BS # -1;
 	}
 }
 
