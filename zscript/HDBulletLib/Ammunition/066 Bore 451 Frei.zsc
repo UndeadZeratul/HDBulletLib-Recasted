@@ -57,12 +57,13 @@ class HDSpent420b:HDUPK{
 			if(pos.z-floorz<2&&abs(vel.z)<2.)setstatelabel("death");
 		}wait;
 	death:
-		420S # -1{
-			if(hdmath.deathmatchclutter())A_SetTics(140);
-			bmissile=false;
-			let gdb=getdefaultbytype(pickuptype);
-			A_SetSize(gdb.radius,gdb.height);
-			return;
+		420S # -1 {
+			if (HDMath.deathmatchClutter()) A_SetTics(140);
+
+			bMISSILE = false;
+
+			let gdb = getDefaultByType(pickupType);
+			A_SetSize(gdb.radius, gdb.height);
 		}stop;
 	}
 }
@@ -156,27 +157,31 @@ class HDSpent069Bore:HDUPK{
 	}
 	states{
 	spawn:
-		42BR A 2 nodelay{
+		42BS A 2 nodelay{
 			A_SetRoll(roll+45,SPF_INTERPOLATE);
 			if(bseesdaggers)angle-=45;else angle+=45;
 			if(pos.z-floorz<2&&abs(vel.z)<2.)setstatelabel("death");
 		}wait;
 	death:
-		42BR A -1{
-			if(hdmath.deathmatchclutter())A_SetTics(140);
-			bmissile=false;
-			vel.xy+=(pos.xy-lastpos.xy)*max(abs(vel.z),abs(lastpos.z-pos.z),1.);
-			if(vel.xy==(0,0)){
-				double aaa=angle-90;
-				vel.x+=cos(aaa);
-				vel.y+=sin(aaa);
-			}else{
+		42BS # -1{
+			if (HDMath.deathmatchClutter()) A_SetTics(140);
+
+			bMISSILE = false;
+
+			vel.xy += (pos.xy - lastpos.xy) * max(abs(vel.z), abs(lastpos. z -pos.z), 1.0);
+
+			if (vel.xy == (0,0)) {
+				double aaa = angle - 90;
+				vel.x += cos(aaa);
+				vel.y += sin(aaa);
+			} else {
 				A_FaceMovementDirection();
-				angle+=90;
+				angle += 90;
 			}
-			let gdb=getdefaultbytype(pickuptype);
+
+			let gdb = getDefaultByType(pickupType);
+
 			A_SetSize(gdb.radius,gdb.height);
-			return;
 		}stop;
 	}
 }
@@ -195,7 +200,7 @@ class HD069Brass:HDAmmo{
 	}
 	states{
 	spawn:
-		42BR A -1;
+		42BS # -1;
 		stop;
 	}
 }
