@@ -7,8 +7,7 @@ class HDExplosiveShellAmmo:HDRoundAmmo{
 		+inventory.ignoreskill
 		+hdpickup.multipickup
 
-		// [UZ] Scale will be handled in the TEXTURES lump
-		//scale 0.3;
+		scale 0.3;
 
 		tag "$TAG_EXPLSHL";
 		hdpickup.refid "xsh";

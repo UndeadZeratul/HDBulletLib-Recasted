@@ -27,9 +27,8 @@ class HD10mAmmo:HDRoundAmmo{//10mm ammo pickup
 		+rollsprite +rollcenter
 		+hdpickup.multipickup
 
-		// [UZ] Scaling will be handled in the TEXTURE lump
-		/*xscale 0.7;
-		yscale 0.6;*/
+		xscale 0.7;
+		yscale 0.6;
 
 		inventory.pickupmessage "$PICKUP_10MM";
 		hdpickup.refid "10M";
@@ -55,8 +54,8 @@ class TenMilBrass:HDAmmo{
 		+hdpickup.multipickup
 		+hdpickup.cheatnogive
 
-		// [UZ] Scaling will be handled in the TEXTURE lump
-		// xscale 0.7;yscale 0.8;
+		xscale 0.7;
+		yscale 0.8;
 
 		height 16;radius 8;
 		tag "$TAG_10MMCASING";
@@ -79,8 +78,8 @@ class HDSpent10mm:HDUPK{
 		+forcexybillboard;
 		+rollsprite;+rollcenter;
 
-		// [UZ] Scaling will be handled in the TEXTURE lump
-		// xscale 0.7;yscale 0.8;
+		xscale 0.7;
+		yscale 0.8;
 
 		height 4;radius 2;
 		bouncetype "doom";

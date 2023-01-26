@@ -34,9 +34,8 @@ class HD4GBAmmo:HDRoundAmmo{
 		+hdpickup.multipickup
 		inventory.pickupmessage "$PICKUP_4GB";
 
-		// [UZ] Scale will be handled in the TEXTURES lump
-		//scale 0.4;
-		
+		scale 0.4;
+
 		tag "$TAG_4GB";
 		hdpickup.refid "4gb";
 		hdpickup.bulk ENC_4GB;
