@@ -232,8 +232,8 @@ class HDSpent45LCb:HDUPK
 		bouncefactor 0.4;
 		maxstepheight 0.6;
 
-        // [UZ] Scaling will be handled by the TEXTURE lump
-        //xscale 0.75; yscale 1.0;
+		xscale 0.75;
+		yscale 1.0;
 	}
 	override void A_HDUPKGive()
 	{
@@ -298,9 +298,8 @@ class HD45LCBrass:HDAmmo{
 
 class HD45LCAmmo:HDRoundAmmo{
 	default{
-	
-	    // [UZ] Scaling will be handled by the TEXTURE lump
-		//xscale 0.8; yscale 1.0;
+		xscale 0.8;
+		yscale 1.0;
 
 		+forcexybillboard
 		inventory.pickupmessage "$PICKUP_45LC";

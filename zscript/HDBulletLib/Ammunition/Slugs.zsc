@@ -38,8 +38,7 @@ class HDSlugAmmo : HDRoundAmmo
 		+HDPICKUP.MULTIPICKUP
 		Inventory.PickupMessage "$PICKUP_SLUG";
 
-		// [UZ] Scale will be handled in the TEXTURES lump
-		//Scale 0.3;
+		Scale 0.3;
 
 		Tag "$TAG_12SLUG";
 		HDPickup.RefId "slu";
