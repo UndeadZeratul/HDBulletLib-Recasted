@@ -1092,33 +1092,42 @@ Sprite "828RB0", 4, 1
 	Patch "828RA0", 0, 2
 }
 
-Sprite "42BTA0", 20, 8
+Sprite "42BTA0", 20, 7
 {
-	Offset 10, 8
-	Patch "42BRA0", 0, 2
-	Patch "42BRA0", 16, 2
-	Patch "42BRA0", 8, 2
-	Patch "42BRA0", 4, 2
-	Patch "42BRA0", 12, 2
-	Patch "42BRA0", 2, 1
+	Offset 10, 7
+	Patch "42BRA0", 0, 1
+	Patch "42BRA0", 16, 1
+	Patch "42BRA0", 8, 1
+	Patch "42BRA0", 4, 1
+	Patch "42BRA0", 12, 1
+	Patch "42BRA0", 2, 0
 	{
 		Blend "#000000", 0.3
 	}
-	Patch "42BRA0", 18, 1
+	Patch "42BRA0", 18, 0
 	{
 		Blend "#000000", 0.3
 	}
-	Patch "42BRA0", 10, 1
+	Patch "42BRA0", 10, 0
 	{
 		Blend "#000000", 0.3
 	}
-	Patch "42BRA0", 6, 1
+	Patch "42BRA0", 6, 0
 	{
 		Blend "#000000", 0.3
 	}
-	Patch "42BRA0", 14, 1
+	Patch "42BRA0", 14, 0
 	{
 		Blend "#000000", 0.3
+	}
+}
+
+Sprite "42BSA0", 6, 2
+{
+	Offset 3, 2
+	Patch "42BRA0", 0, 0
+	{
+		Rotate 90
 	}
 }
 
