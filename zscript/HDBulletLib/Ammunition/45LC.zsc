@@ -218,10 +218,10 @@ class HDB_45lc:HDBulletActor{
 }
 
 class HDSpent45LC:HDSpent9mm{
-	default{
-		// [UZ] Scaling will be handled by the TEXTURE lump
-		//xscale 0.75; yscale 1.0;
-	}
+    default{
+        xscale 0.75;
+        yscale 1.0;
+    }
 	states{
 	spawn:
 		CS45 B 2 nodelay{
@@ -235,10 +235,8 @@ class HDSpent45LC:HDSpent9mm{
 
 class HD45LCAmmo:HDRoundAmmo{
 	default{
-	
-		// [UZ] Scaling will be handled by the TEXTURE lump
-		/*xscale 0.8;
-		yscale 1.0;*/
+		xscale 0.8;
+		yscale 1.0;
 
 		+forcexybillboard
 		inventory.pickupmessage "$PICKUP_45LC";
