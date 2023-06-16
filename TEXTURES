@@ -12,7 +12,7 @@ Sprite "SLUGA0", 15, 7
 
 Sprite "SLG1A0", 3, 7
 {
-	Offset 1, 7
+	Offset 1, 8
 	Patch "SHELA0", 0, 0
 	{
 		Translation "152:159=195:202", "161:167=85:100", "109:111=202:205"
