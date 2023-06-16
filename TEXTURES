@@ -24,7 +24,7 @@ Sprite "4GS1A0", 3, 9
 	XScale 0.700
 	YScale 0.700
 	Offset 1, 9
-	Patch "4GS1A0", 0, 0
+	Patch "4GSIA0", 0, 0
 }
 
 Sprite "4GPAA0", 15, 9
