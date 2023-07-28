@@ -71,10 +71,10 @@ class HDSpent45ACP : HDSpent9mm
 	States
 	{
 		Spawn:
-			45CA A 2 NoDelay A_SetRoll(roll + 45, SPF_INTERPOLATE);
+			45CA B 2 NoDelay A_SetRoll(roll + 45, SPF_INTERPOLATE);
 			Loop;
 		Death:
-			TNT1 # -1 A_SpawnItemEx('HDSpent45ACPb');
+			45CA # -1 A_SpawnItemEx('HDSpent45ACPb');
 			Stop;
 	}
 }
@@ -95,6 +95,27 @@ class HD45ACPBrass:HDAmmo{
 	spawn:
 		45CA A -1;
 		stop;
+	}
+}
+
+class HDLoose45ACP : HDLoose9mm
+{
+	default
+	{
+		bouncefactor 0.5;
+	}
+
+	states
+	{
+		spawn:
+			45CA A 2 NoDelay A_SetRoll(roll + 45, SPF_INTERPOLATE);
+			Loop;
+		death:
+			45CA # 1 {
+				actor a = Spawn("HD45ACPAmmo",self.pos,ALLOW_REPLACE);
+				a.roll = self.roll;
+				a.vel = self.vel;
+			}Stop;
 	}
 }
 
