@@ -1562,6 +1562,7 @@ Sprite "HW1LA0", 56, 6
 	Patch "ATCN_ST1", 0, 0
 }
 
+// 9mm NDM
 Sprite "TNNDA0", 10, 4
 {
 	Offset 5, 4
@@ -1577,6 +1578,24 @@ Sprite "NRNDA0", 1, 3
 	Patch "TEN9A0", 0, -1
 	{
 		Translation "64:111=@72[128,13,0]", "128:167=#[91,168,244]"
+	}
+}
+
+Sprite "NBRSA0", 1, 3
+{
+	Offset 1, 3
+	Patch "PBRSA0", 0, 0
+	{
+		Translation "64:111=@72[128,13,0]", "128:167=#[91,168,244]"
+	}
+}
+
+Sprite "NBRSB0", 3, 1
+{
+	Offset 1, 1
+	Patch "PBRSB0", 0, 0
+	{
+		Translation "128:167=#[91,168,244]"
 	}
 }
 

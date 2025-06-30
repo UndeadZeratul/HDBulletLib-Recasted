@@ -4,7 +4,17 @@
 
 class HDSpentNDM:HDSpent9mm{
 	default{
-		Translation "128:167=#[91,168,244]";
+		// [UZ] Translation will be handled in TEXTURES lump
+		//Translation "128:167=#[91,168,244]";
+	}
+	states{
+	spawn:
+		NBRS B 2 nodelay{
+			A_SetRoll(roll+45,SPF_INTERPOLATE);
+		}loop;
+	death:
+		NBRS # -1;
+		stop;
 	}
 }
 //////////////////////////////////////////////////////
