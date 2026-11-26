@@ -723,7 +723,7 @@ class HDBLRoundTypeHandler : StaticEventHandler {
 
         // If the player who emitted the event is not in game, quit.
         if (!playerInGame[e.player]) return;
-        
+
         // Get the PlayerPawn of the player who emitted the event.
         let plr = players[e.player].mo;
 
@@ -761,7 +761,7 @@ class HDBLRoundTypeHandler : StaticEventHandler {
                     speedFactor: e.isManual ? e.args[1] : 0,
                     amount: e.isManual ? e.args[2] : 1
                 );
-                
+
                 break;
             }
             case 'HDBL_EjectRoundSpent': {
