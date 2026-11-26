@@ -1,0 +1,272 @@
+class HDBLRoundType {
+
+    // Class Names
+    // -----------
+
+    // The Inventory Item for the ammunition itself.
+    name ammoName;
+
+    // The Projectile Actor fired from a weapon.
+    name projName;
+
+    // The Pickup Actor of a spent casing ejected from a weapon.
+    name spentName;
+
+    // The Actor of an unspent round ejected from a weapon, then caught.
+    name unspentName;
+
+    // The Actor of an unspent round ejected from a weapon.
+    name fumbledName;
+
+    // The Pickup Actor for an empty casing.
+    name casingName;
+
+    // The Pickup Actor for a single round.
+    name singlePickupName;
+
+    // The Pickup Actor for a bundle of rounds.
+    name bundlePickupName;
+
+    // The Pickup Actor for a box of rounds.
+    name boxPickupName;
+
+    // BoxableRound Data
+    // -----------------
+
+    // The number of rounds in a bundle.
+    int bundleAmt;
+
+    // The number of rounds in a box.
+    int boxAmt;
+
+    // The Sprite used for a single round.
+    string singleSprite;
+
+    // The Sprite used for a bundle of rounds.
+    string bundleSprite;
+
+    // The Sprite used for a box of rounds.
+    string boxSprite;
+
+    // The Sound used by the DistantNoise function
+    string distantSound;
+
+    // HDBulletActor Data
+    // ------------------
+
+    // The number of projectiles fired from a single round.
+    int numProjectiles;
+
+    static HDBLRoundType create(
+        name ammoName,
+        name projName,
+        name spentName = 'None',
+        name unspentName = 'None',
+        name fumbledName = 'None',
+        name casingName = 'None',
+        name singlePickupName = 'None',
+        name bundlePickupName = 'None',
+        name boxPickupName = 'None',
+        int bundleAmt = -1,
+        int boxAmt = -1,
+        string singleSprite = "",
+        string bundleSprite = "",
+        string boxSprite = "",
+        int numProjectiles = 1,
+        string distantSound = ""
+    ) {
+        let round = HDBLRoundType(new('HDBLRoundType'));
+
+        if (!round) return null;
+
+        round.ammoName         = ammoName;
+        round.projName         = projName;
+        round.spentName        = spentName;
+        round.unspentName      = unspentName;
+        round.fumbledName      = fumbledName;
+        round.casingName       = casingName;
+        round.singlePickupName = singlePickupName;
+        round.bundlePickupName = bundlePickupName;
+        round.boxPickupName    = boxPickupName;
+        round.bundleAmt        = bundleAmt;
+        round.boxAmt           = boxAmt;
+        round.singleSprite     = singleSprite;
+        round.bundleSprite     = bundleSprite;
+        round.boxSprite        = boxSprite;
+        round.numProjectiles   = numProjectiles;
+        round.distantSound     = distantSound;
+
+        if (bundleSprite == "" || bundleSprite == 'None') bundleSprite = singleSprite;
+        if (boxSprite == "" || boxSprite == 'None') boxSprite = singleSprite;
+
+        // TODO: check & default values to other values
+        // (BundlePickupName defaulting to singlePickupName, defaulting to ammoName, etc.)
+
+        return round;
+    }
+
+    play void fireRound(
+        Actor caller,
+        // double zOfs = 999, //999=use default
+        // double xyOfs = 0,
+        double spread = 0, //range of random velocity added
+        // double aimoffx = 0,
+        // double aimoffy = 0,
+        double speedfactor = 0,
+        int amount = 1,
+        // sound distantsound = "",
+        double distantsoundvol = 1.0,
+        double distantsoundpitch = 1.0,
+        Actor source = null
+    ) {
+
+        // if (!(Class<HDBulletActor>)(roundType.projName)) {
+        //     HDBL.logWarn('HDBulletLib', "RoundType \'"..splitNames[1].."\' has an invalid projName: \'"..roundType.projName.."\'.");
+        //     break;
+        // }
+
+        if ((Class<HDBulletActor>)(projName)) {
+            HDBulletActor.fireBullet(
+                caller,
+                type: projName,
+                // zOfs: zOfs,
+                // xyOfs: xyOfs,
+                spread: spread,
+                // aimOffX: aimOffX,
+                // aimOffY: aimOffY,
+                speedFactor: speedFactor,
+                amount: numProjectiles * amount,
+                distantSound: distantSound,
+                distantSoundVol: distantSoundVol,
+                distantSoundPitch: distantSoundPitch,
+                source: source
+            );
+        } else if ((Class<SlowProjectile>)(projName)) {
+            let hdp = HDPlayerPawn(caller);
+            let hdw = hdp ? HDWeapon(hdp.player.readyWeapon) : null;
+
+            let pos = hdp
+                ? (hdp.pos + hdp.gunpos + HDMath.RotateVec3D(hdw ? (hdw.barrelLength, 0, 0) : (0, 0, 0), hdp.gunAngle, hdp.gunPitch))
+                : caller.pos + HDMath.getGunPos(caller);
+
+            let a = Actor.spawn(projName, pos);
+            
+            if (hdp) {
+                a.angle = hdp.gunAngle;
+                a.pitch = hdp.gunPitch;
+            } else {
+                a.angle = caller.angle;
+                a.pitch = caller.pitch;
+            }
+        }
+    }
+
+    play void ejectRoundSpent(
+        Actor caller,
+        double ejectAngle,
+        Vector3 ejectVel = (0, 0, 0),
+        Vector3 offset = (0, 0, 0)
+    ) {
+
+        // if (!(Class<Actor>)(roundType.spentName)) {
+        //     HDBL.logWarn('HDBulletLib', "RoundType \'"..splitNames[1].."\' has an invalid spentName: \'"..roundType.spentName.."\'.");
+        //     break;
+        // }
+
+        HDWeapon.EjectCasing(
+            caller,
+            spentName,
+            ejectAngle,
+            ejectVel: ejectVel,
+            offset: offset
+        );
+    }
+
+    play void ejectRoundUnSpent(
+        Actor caller,
+        double ejectAngle,
+        Vector3 ejectVel = (0, 0, 0),
+        Vector3 offset = (0, 0, 0)
+    ) {
+
+        // if (!(Class<Actor>)(roundType.unSpentName)) {
+        //     HDBL.logWarn('HDBulletLib', "RoundType \'"..splitNames[1].."\' has an invalid unSpentName: \'"..roundType.unSpentName.."\'.");
+        //     break;
+        // }
+
+        let c = HDWeapon.EjectCasing(
+            caller,
+            unSpentName,
+            ejectAngle,
+            ejectVel: ejectVel,
+            offset: offset
+        );
+
+        c.target = caller;
+    }
+
+    play void ejectRoundFumbled(
+        Actor caller,
+        double ejectAngle,
+        Vector3 ejectVel = (0, 0, 0),
+        Vector3 offset = (0, 0, 0)
+    ) {
+
+        // if (!(Class<Actor>)(roundType.fumbledName)) {
+        //     HDBL.logWarn('HDBulletLib', "RoundType \'"..splitNames[1].."\' has an invalid fumbledName: \'"..roundType.fumbledName.."\'.");
+        //     break;
+        // }
+
+        HDWeapon.EjectCasing(
+            caller,
+            fumbledName,
+            ejectAngle,
+            ejectVel: ejectVel,
+            offset: offset
+        );
+    }
+
+    play void spawnAmmo(
+        Vector3 pos,
+        int amount = 1
+    ) {
+
+        // if (!(Class<Actor>)(roundType.ammoName)) {
+        //     HDBL.logWarn('HDBulletLib', "RoundType \'"..splitNames[1].."\' has an invalid ammoName: \'"..roundType.ammoName.."\'.");
+        //     break;
+        // }
+
+        // Spawn in the ammo Actor
+        let a = Actor.spawn(ammoName, pos);
+
+        // If we've only spawned one, quit.
+        if (amount <= 1) return;
+
+        // If the spawned Actor is an Inventory Item, set its amount
+        if (a is 'Inventory') Inventory(a).amount = amount;
+
+        if (a is 'HDRoundAmmo' && (Class<Actor>)(boxPickupName)) {
+
+            // If the spawned Actor is a RoundAmmo and has a valid box Pickup Actor,
+            // split it into bundles & boxes
+            HDRoundAmmo(a).splitPickupBoxableRound(
+                bundleAmt,
+                boxAmt,
+                boxPickupName,
+                bundleSprite,
+                singleSprite
+            );
+        } else if (a is 'HDPickup') {
+
+            // Otherwise, if it's some other Pickup, split it.
+            HDPickup(a).splitPickup();
+        }
+    }
+
+    string toString() {
+        return String.format(
+            "{ \"ammoName\": \'%s\', \"projName\": \'%s\', \"spentName\": \'%s\', \"unSpentName\": \'%s\', \"fumbledName\": \'%s\', \"casingName\": \'%s\', \"singlePickupName\": \'%s\', \"bundlePickupName\": \'%s\', \"boxPickupName\": \'%s\', \"bundleAmt\": %i, \"boxAmt\": %i, \"singleSprite\": \"%s\", \"bundleSprite\": \"%s\", \"numProjectiles\": %i, \"distantSound\": \"%s\" }",
+                 ammoName,             projName,             spentName,             unSpentName,             fumbledName,             casingName,             singlePickupName,             bundlePickupName,             boxPickupName,             bundleAmt,         boxAmt,         singleSprite,             bundleSprite,             numProjectiles,         distantSound
+        );
+    }
+}

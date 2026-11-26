@@ -1,0 +1,911 @@
+class HDBLRoundTypeHandler : StaticEventHandler {
+    Map<name, HDBLRoundType> roundTypes;
+
+    /* 
+    HDBLRoundType create(
+        name ammoName,
+        name projName,
+        name spentName,
+        name unspentName,
+        name fumbledName,
+        name casingName,
+        name singlePickupName,
+        name bundlePickupName,
+        name boxPickupName,
+        int bundleAmt,
+        int boxAmt,
+        string singleSprite,
+        string bundleSprite,
+        string boxSprite,
+        int numProjectiles
+    )
+     */
+
+    override void onRegister() {
+
+        // VANILLA
+        // -------
+
+        // 9mm
+        registerRoundType('9mm', HDBLRoundType.create(
+            'HDPistolAmmo', 'HDB_9',
+            spentName:        'HDSpent9mm',
+            // unspentName:      'None',
+            fumbledName:      'HDLoose9mm',
+            // casingName:       'None',
+            singlePickupName: 'HDLoose9mm',
+            // bundlePickupName: 'None',
+            boxPickupName:    'HD9mBoxPickup',
+            bundleAmt:        10,
+            boxAmt:           100,
+            singleSprite:     "PRNDA0",
+            bundleSprite:     "TEN9A0",
+            boxSprite:        "9BOXA0" //,
+            // numProjectiles:   1
+        ));
+
+        // 4mm
+        registerRoundType('4mm', HDBLRoundType.create(
+            'FourMilAmmo', 'HDB_426',
+            // spentName:        'None',
+            // unspentName:      'None',
+            fumbledName:      'ZM66DroppedRound',
+            // casingName:       'None',
+            singlePickupName: 'ZM66DroppedRound',
+            // bundlePickupName: 'None',
+            // boxPickupName:    'None',
+            // bundleAmt:        -1,
+            // boxAmt:           -1,
+            singleSprite:     "4RNDA0",
+            bundleSprite:     "TEN4A0",
+            boxSprite:        "4BOXA0" //,
+            // numProjectiles:   1
+        ));
+
+        // .355
+        registerRoundType('355', HDBLRoundType.create(
+            'HDRevolverAmmo', 'HDB_355',
+            spentName:        'HDSpent355',
+            // unspentName:      'None',
+            // fumbledName:      'None',
+            // casingName:       'None',
+            singlePickupName: 'HDRevolverAmmo',
+            // bundlePickupName: 'None',
+            boxPickupName:    'HD355BoxPickup',
+            bundleAmt:        10,
+            boxAmt:           72,
+            singleSprite:     "3RNDA0",
+            bundleSprite:     "TEN3A0",
+            boxSprite:        "3BOXA0" //,
+            // numProjectiles:   1
+        ));
+
+        // 12ga Shells
+        registerRoundType('12gaShell', HDBLRoundType.create(
+            'HDShellAmmo', 'HDB_00',
+            spentName:        'HDSpentShell',
+            unspentName:      'HDUnSpentShell',
+            fumbledName:      'HDFumblingShell',
+            // casingName:       'None',
+            singlePickupName: 'HDFumblingShell',
+            bundlePickupName: 'ShellPickup',
+            boxPickupName:    'ShellBoxBoxPickup',
+            bundleAmt:        4,
+            boxAmt:           20,
+            singleSprite:     "SHL1A0",
+            bundleSprite:     "SHELA0",
+            boxSprite:        "SBOXA0",
+            numProjectiles:   10
+        ));
+
+        // 7.7mm
+        registerRoundType('7mm', HDBLRoundType.create(
+            'SevenMilAmmo', 'HDB_776',
+            spentName:        'HDSpent7mm',
+            // unspentName:      'None',
+            fumbledName:      'HDLoose7mm',
+            casingName:       'SevenMilBrass',
+            singlePickupName: 'HDLoose7mm',
+            // bundlePickupName: 'None',
+            boxPickupName:    'HD7mBoxPickup',
+            bundleAmt:        10,
+            boxAmt:           50,
+            singleSprite:     "7RNDA0",
+            bundleSprite:     "TEN7A0",
+            boxSprite:        "7BOXA0" //,
+            // numProjectiles:   1
+        ));
+
+        // 7.7mm Recast
+        registerRoundType('7mmRecast', HDBLRoundType.create(
+            'SevenMilAmmoRecast', 'HDB_776r',
+            spentName:        'HDSpent7mm',
+            // unspentName:      'None',
+            fumbledName:      'HDLoose7mmRecast',
+            casingName:       'SevenMilBrass',
+            singlePickupName: 'HDLoose7mmRecast',
+            // bundlePickupName: 'None',
+            // boxPickupName:    'None',
+            bundleAmt:        10,
+            // boxAmt:           -1,
+            singleSprite:     "7RNDA0",
+            bundleSprite:     "TEN7A0" //,
+            // boxSprite:        "7BOXA0",
+            // numProjectiles:   1
+        ));
+
+        // Rocket Grenade
+        registerRoundType('Rocquette', HDBLRoundType.create(
+            'HDRocketAmmo', 'RocketGrenade',
+            // spentName:        'None',
+            // unspentName:      'None',
+            // fumbledName:      'None',
+            // casingName:       'None',
+            singlePickupName: 'HDRocketAmmo',
+            // bundlePickupName: 'None',
+            boxPickupName:    'RocketBoxPickup',
+            // bundleAmt:        -1,
+            // boxAmt:           -1,
+            singleSprite:     "ROQPA0" //,
+            // bundleSprite:     "",
+            // boxSprite:        "",
+            // numProjectiles:   1
+        ));
+
+        // H.E.A.T. Round
+        registerRoundType('HEAT', HDBLRoundType.create(
+            'HEATAmmo', 'HDHEAT',
+            // spentName:        'None',
+            // unspentName:      'None',
+            // fumbledName:      'None',
+            // casingName:       'None',
+            singlePickupName: 'HEATAmmo',
+            // bundlePickupName: 'None',
+            // boxPickupName:    'None',
+            // bundleAmt:        -1,
+            // boxAmt:           -1,
+            singleSprite:     "ROCKA0" //,
+            // bundleSprite:     "",
+            // boxSprite:        "",
+            // numProjectiles:   1
+        ));
+
+        // Brontornis
+        registerRoundType('Brontornis', HDBLRoundType.create(
+            'BrontornisRound', 'HDB_bronto',
+            spentName:        'TerrorCasing',
+            // unspentName:      'None',
+            fumbledName:      'BrontornisRound',
+            casingName:       'TerrorCasing',
+            singlePickupName: 'BrontornisRound',
+            // bundlePickupName: 'None',
+            // boxPickupName:    'None',
+            // bundleAmt:        -1,
+            // boxAmt:           -1,
+            singleSprite:     "BROCA0" //,
+            // bundleSprite:     "",
+            // boxSprite:        "",
+            // numProjectiles:   1
+        ));
+
+        // HDBULLETLIB
+        // -----------
+
+        // 4ga Slugs
+        registerRoundType('4gaSlug', HDBLRoundType.create(
+            'HD4GSAmmo', 'HDB_4GS',
+            spentName:        'HDSpent4GS',
+            unspentName:      'HDUnSpent4GS',
+            fumbledName:      'HDFumbling4GS',
+            casingName:       'HD4GSBrass',
+            singlePickupName: 'HDFumbled4GS',
+            // bundlePickupName: 'None',
+            // boxPickupName:    'None',
+            // bundleAmt:        -1,
+            // boxAmt:           -1,
+            singleSprite:     "4GS1A0" //,
+            // bundleSprite:     "",
+            // boxSprite:        "",
+            // numProjectiles:   1
+        ));
+
+        // 4ga Shells
+        registerRoundType('4gaShell', HDBLRoundType.create(
+            'HD4GBAmmo', 'HDB_400',
+            spentName:        'HDSpent4GB',
+            unspentName:      'HDUnSpent4GB',
+            fumbledName:      'HDFumbling4GB',
+            casingName:       'HD4GBBrass',
+            singlePickupName: 'HDFumbled4GB',
+            bundlePickupName: 'HD4GBPickup',
+            boxPickupName:    'HD4GBBox',
+            bundleAmt:        4,
+            boxAmt:           25,
+            singleSprite:     "4GSIA0",
+            bundleSprite:     "4GBPA0",
+            boxSprite:        "4GBXA0",
+            numProjectiles:   12
+        ));
+
+        // 5mm BR
+        registerRoundType('5mm', HDBLRoundType.create(
+            'HD5mm_Ammo', 'HDBullet5mmMR',
+            spentName:        'HDSpent5mmMR',
+            // unspentName:      'None',
+            fumbledName:      'HDLoose5mmMR',
+            casingName:       'HD5mmBrass',
+            singlePickupName: 'HDLoose5mmMR',
+            // bundlePickupName: 'None',
+            boxPickupName:    'PB_5mmBoxPickup',
+            bundleAmt:        16,
+            boxAmt:           160,
+            singleSprite:     "5MMYA0",
+            bundleSprite:     "5MMZA0",
+            boxSprite:        "5MBXA0" //,
+            // numProjectiles:   1
+        ));
+
+        // 6mm Flechette
+        registerRoundType('6mmFlechette', HDBLRoundType.create(
+            'HD6mmFlechetteAmmo', 'HDB_6mmFlechette',
+            spentName:        'HDSpent6mmFlechette',
+            // unspentName:      'None',
+            // fumbledName:      'None',
+            casingName:       'HD6mmBrass',
+            singlePickupName: 'HD6mmFlechetteAmmo',
+            // bundlePickupName: 'None',
+            boxPickupName:    'HD6mmFlechetteBoxPickup',
+            bundleAmt:        12,
+            boxAmt:           100,
+            singleSprite:     "ACRPI0",
+            bundleSprite:     "ACR9I0",
+            boxSprite:        "ACRPK0" //,
+            // numProjectiles:   1
+        ));
+
+        // 9mm NDM
+        registerRoundType('9mmNDM', HDBLRoundType.create(
+            'HDNDMLoose', 'HDB_NDM',
+            spentName:        'HDSpentNDM',
+            // unspentName:      'None',
+            fumbledName:      'HDNDMLoose',
+            casingName:       'NDMBrass',
+            singlePickupName: 'HDNDMLoose',
+            // bundlePickupName: 'None',
+            boxPickupName:    'NDMBoxPickup',
+            bundleAmt:        10,
+            boxAmt:           60,
+            singleSprite:     "NRNDA0",
+            bundleSprite:     "TNNDA0",
+            boxSprite:        "NDMBA0" //,
+            // numProjectiles:   1
+        ));
+
+        // 10mm
+        registerRoundType('10mm', HDBLRoundType.create(
+            'HD10mAmmo', 'HDB_10',
+            spentName:        'HDSpent10mm',
+            // unspentName:      'None',
+            fumbledName:      'HDLoose10mm',
+            casingName:       'TenMilBrass',
+            singlePickupName: 'HD10mAmmo',
+            // bundlePickupName: 'None',
+            boxPickupName:    'HD10mBoxPickup',
+            bundleAmt:        10,
+            boxAmt:           100,
+            singleSprite:     "PR10A0",
+            bundleSprite:     "T10MA0",
+            boxSprite:        "BX10A0" //,
+            // numProjectiles:   1
+        ));
+
+        // 12ga Flechette
+        registerRoundType('12gaFlechette', HDBLRoundType.create(
+            'HDFlechetteShellAmmo', 'HDB_FlechetteShell',
+            spentName:        'HDSpentFlechetteShell',
+            unspentName:      'HDUnSpentFlechetteShell',
+            fumbledName:      'HDFumblingFlechetteShell',
+            casingName:       'HDFlechetteShellBrass',
+            singlePickupName: 'HDFumbledFlechetteShell',
+            bundlePickupName: 'FlechetteShellPickup',
+            boxPickupName:    'HDFlechetteShellBoxPickup',
+            bundleAmt:        4,
+            boxAmt:           20,
+            singleSprite:     "SHF1A0",
+            bundleSprite:     "SHF4A0",
+            boxSprite:        "SFBXA0",
+            numProjectiles:   6
+        ));
+
+        // 20mm Grenade
+        registerRoundType('20mmGrenade', HDBLRoundType.create(
+            'WAN_20mmGrenadeAmmo', 'WAN_20mmGrenade',
+            // spentName:        'None',
+            // unspentName:      'None',
+            // fumbledName:      'None',
+            // casingName:       'None',
+            singlePickupName: 'WAN_20mmGrenadeAmmo',
+            // bundlePickupName: 'None',
+            boxPickupName:    'WAN_20mmGrenadeBox',
+            // bundleAmt:        -1,
+            boxAmt:           10,
+            singleSprite:     "MA7GB0",
+            // bundleSprite:     "MA7GB0",
+            boxSprite:        "MA7GC0" //,
+            // numProjectiles:   1
+        ));
+
+        // .30-06
+        registerRoundType('3006', HDBLRoundType.create(
+            'ThirtyAughtSixAmmo', 'HDB_3006',
+            spentName:        'HDSpent3006',
+            // unspentName:      'None',
+            fumbledName:      'HDLoose3006',
+            casingName:       'ThirtyAughtSixBrass',
+            singlePickupName: 'HDLoose3006',
+            // bundlePickupName: 'None',
+            boxPickupName:    'HD3006BoxPickup',
+            bundleAmt:        10,
+            boxAmt:           40,
+            singleSprite:     "RBRSA0",
+            bundleSprite:     "TEN7A0",
+            boxSprite:        "M1A1Y0" //,
+            // numProjectiles:   1
+        ));
+
+        // .45 ACP
+        registerRoundType('45ACP', HDBLRoundType.create(
+            'HD45ACPAmmo', 'HDB_45ACP',
+            spentName:        'HDSpent45ACP',
+            // unspentName:      'None',
+            // fumbledName:      'None',
+            casingName:       'H45ACPBrass',
+            singlePickupName: 'HD45ACPAmmo',
+            // bundlePickupName: 'None',
+            boxPickupName:    'HD45ACPBoxPickup',
+            bundleAmt:        10,
+            boxAmt:           50,
+            singleSprite:     "45RNA0",
+            bundleSprite:     "45TNA0",
+            boxSprite:        "45BXA0" //,
+            // numProjectiles:   1
+        ));
+
+        // .45 LC
+        registerRoundType('45LC', HDBLRoundType.create(
+            'HD45LCAmmo', 'HDB_45lc',
+            spentName:        'HDSpent45LC',
+            // unspentName:      'None',
+            // fumbledName:      'None',
+            casingName:       'HD45LCBrass',
+            singlePickupName: 'HD45LCAmmo',
+            // bundlePickupName: 'None',
+            boxPickupName:    'HD45LCBoxPickup',
+            bundleAmt:        10,
+            boxAmt:           50,
+            singleSprite:     "PR10A0",
+            bundleSprite:     "T10MA0",
+            boxSprite:        "45LBA0" //,
+            // numProjectiles:   1
+        ));
+
+        // Golden .45 LC
+        registerRoundType('45LCGold', HDBLRoundType.create(
+            'HDGold45LCAmmo', 'HDB_Gold45lc',
+            spentName:        'HDSpentGold45LC',
+            // unspentName:      'None',
+            // fumbledName:      'None',
+            casingName:       'G45LCBrass',
+            singlePickupName: 'HDGold45LCAmmo',
+            // bundlePickupName: 'None',
+            boxPickupName:    'HDGold45lcBoxPickup',
+            bundleAmt:        6,
+            boxAmt:           12,
+            singleSprite:     "GC45A0",
+            bundleSprite:     "GSIXA0",
+            boxSprite:        "GLBXA0" //,
+            // numProjectiles:   1
+        ));
+
+        // .50 AM
+        registerRoundType('50AM', HDBLRoundType.create(
+            'HD50AM_Ammo', 'HDB_50AM',
+            spentName:        'HDSpent50AM',
+            // unspentName:      'None',
+            fumbledName:      'HDLoose50AM',
+            casingName:       'HD50AMBrass',
+            singlePickupName: 'HDLoose50AM',
+            // bundlePickupName: 'None',
+            boxPickupName:    'PB_50AMBoxPickup',
+            bundleAmt:        10,
+            boxAmt:           65,
+            singleSprite:     "G50ZA0",
+            bundleSprite:     "G50YA0",
+            boxSprite:        "50AMX0" //,
+            // numProjectiles:   1
+        ));
+
+        // .50 OMG
+        registerRoundType('50OMG', HDBLRoundType.create(
+            'HD50OMGAmmo', 'HDB_50OMG',
+            spentName:        'HDSpent50OMG',
+            unspentName:      'HDUnSpent50OMG',
+            fumbledName:      'HDLoose50OMG',
+            casingName:       'HD50OMGBrass',
+            singlePickupName: 'HDLoose50OMG',
+            // bundlePickupName: 'None',
+            boxPickupName:    'HD50OMGBoxPickup',
+            bundleAmt:        10,
+            boxAmt:           20,
+            singleSprite:     "OGBLA0",
+            bundleSprite:     "OG10A0",
+            boxSprite:        "OGBXA0" //,
+            // numProjectiles:   1
+        ));
+
+        // .56 Cal Lead Ball
+        registerRoundType('LeadBall', HDBLRoundType.create(
+            'HDBallAmmo', 'HDB_Ball',
+            // spentName:        'None',
+            // unspentName:      'None',
+            fumbledName:      'HDLooseBall',
+            // casingName:       'None',
+            singlePickupName: 'HDLooseBall',
+            // bundlePickupName: 'None',
+            // boxPickupName:    'None',
+            // bundleAmt:        -1,
+            // boxAmt:           -1,
+            singleSprite:     "BALLA0" //,
+            // bundleSprite:     "",
+            // boxSprite:        "",
+            // numProjectiles:   1
+        ));
+
+        // .420 Frei
+        registerRoundType('420Frei', HDBLRoundType.create(
+            'HDAurochsAmmo', 'HDB_420',
+            spentName:        'HDSpent420',
+            // unspentName:      'None',
+            // fumbledName:      'None',
+            casingName:       'HD420Brass',
+            singlePickupName: 'HDAurochsAmmo',
+            // bundlePickupName: 'None',
+            boxPickupName:    'HD420BoxPickup',
+            bundleAmt:        10,
+            boxAmt:           60,
+            singleSprite:     "420BA0",
+            bundleSprite:     "42TEA0",
+            boxSprite:        "420AA0" //,
+            // numProjectiles:   1
+        ));
+
+        // .069 Bore
+        registerRoundType('069Bore', HDBLRoundType.create(
+            'HD069BoreAmmo', 'HDB_000',
+            spentName:        'HDSpent069Bore',
+            // unspentName:      'None',
+            // fumbledName:      'None',
+            casingName:       'HD069Brass',
+            singlePickupName: 'HD069BoreAmmo',
+            // bundlePickupName: 'None',
+            boxPickupName:    'HD069BoreBox',
+            bundleAmt:        10,
+            boxAmt:           30,
+            singleSprite:     "42BRA0",
+            bundleSprite:     "42BTA0",
+            boxSprite:        "42BXA0",
+            numProjectiles:   5
+        ));
+
+        // .300 Savage
+        registerRoundType('300Savage', HDBLRoundType.create(
+            'Savage300Ammo', 'HDB_300Savage',
+            spentName:        'Spent300Savage',
+            // unspentName:      'None',
+            fumbledName:      'LooseSavage300',
+            casingName:       'Savage300Brass',
+            singlePickupName: 'LooseSavage300',
+            bundlePickupName: 'HDSavage300Pickup',
+            boxPickupName:    'HDSavage300BoxPickup',
+            bundleAmt:        6,
+            boxAmt:           48,
+            singleSprite:     "RBRSA0",
+            bundleSprite:     "SVG6A0",
+            boxSprite:        "S3BXA0" //,
+            // numProjectiles:   1
+        ));
+
+        // .500 S&W Light
+        registerRoundType('500SWL', HDBLRoundType.create(
+            'HD500SWLightAmmo', 'HDB_50SW',
+            spentName:        'HDSpent500',
+            // unspentName:      'None',
+            fumbledName:      'HDLoose500Light',
+            casingName:       'HD500Brass',
+            singlePickupName: 'HDLoose500Light',
+            // bundlePickupName: 'None',
+            boxPickupName:    'HD500SWLightBoxPickup',
+            bundleAmt:        10,
+            boxAmt:           40,
+            singleSprite:     "SWRNA0",
+            bundleSprite:     "TNSWA0",
+            boxSprite:        "5LBXA0" //,
+            // numProjectiles:   1
+        ));
+
+        // .500 S&W Heavy
+        registerRoundType('500SWH', HDBLRoundType.create(
+            'HD500SWHeavyAmmo', 'HDB_500LAD',
+            spentName:        'HDSpent500',
+            // unspentName:      'None',
+            fumbledName:      'HDLoose500Heavy',
+            casingName:       'HD500Brass',
+            singlePickupName: 'HDLoose500Heavy',
+            // bundlePickupName: 'None',
+            boxPickupName:    'HD500SWHeavyBoxPickup',
+            bundleAmt:        10,
+            boxAmt:           20,
+            singleSprite:     "SWRNB0",
+            bundleSprite:     "TNSWB0",
+            boxSprite:        "5HBXA0" //,
+            // numProjectiles:   1
+        ));
+
+        // 7.62mm Tokarev
+        registerRoundType('762Tokarev', HDBLRoundType.create(
+            'HD762TokarevAmmo', 'HDB_762Tokarev',
+            spentName:        'HDSpent762Tokarev',
+            // unspentName:      'None',
+            fumbledName:      'HDLoose762Tokarev',
+            casingName:       'TokarevBrass',
+            singlePickupName: 'HDLoose762Tokarev',
+            // bundlePickupName: 'None',
+            boxPickupName:    'HD762TokarevBoxPickup',
+            bundleAmt:        10,
+            boxAmt:           50,
+            singleSprite:     "T762A0",
+            bundleSprite:     "T710A0",
+            boxSprite:        "T7BXA0" //,
+            // numProjectiles:   1
+        ));
+
+        // 8.28mm UAC
+        registerRoundType('8mm', HDBLRoundType.create(
+            'EightMilAmmo', 'HDB_828',
+            // spentName:        'None',
+            // unspentName:      'None',
+            // fumbledName:      'None',
+            // casingName:       'None',
+            singlePickupName: 'EightMilAmmo',
+            // bundlePickupName: 'None',
+            boxPickupName:    'HD8mBoxPickup',
+            // bundleAmt:        -1,
+            // boxAmt:           -1,
+            singleSprite:     "828RA0" //,
+            // bundleSprite:     "",
+            // boxSprite:        "8BOXA0",
+            // numProjectiles:   1
+        ));
+
+        // 20ga Birdshot Shell
+        registerRoundType('20gaBirdshotShell', HDBLRoundType.create(
+            'HDBirdshotShellAmmo', 'HDB_BBShot',
+            spentName:        'HDSpentBirdshotShell',
+            unspentName:      'HDUnSpentBirdshotShell',
+            fumbledName:      'HDFumblingBirdshotShell',
+            casingName:       'BirdshotBrass',
+            singlePickupName: 'HDFumblingBirdshotShell',
+            bundlePickupName: 'BirdshotShellPickup',
+            boxPickupName:    'BirdshotShellBoxPickup',
+            bundleAmt:        4,
+            boxAmt:           20,
+            singleSprite:     "BSHLA0",
+            bundleSprite:     "BSH4A0",
+            boxSprite:        "BBOXA0",
+            numProjectiles:   30
+        ));
+
+        // 12ga Explosive Slugs
+        registerRoundType('12gaExplosiveSlug', HDBLRoundType.create(
+            'HDExplosiveShellAmmo', 'HDB_12GaugeSlugMissile',
+            spentName:        'HDSpentExplosiveShell',
+            unspentName:      'HDUnSpentExplosiveShell',
+            fumbledName:      'HDFumblingExplosiveShell',
+            casingName:       'ExplosiveShellBrass',
+            singlePickupName: 'HDFumblingExplosiveShell',
+            bundlePickupName: 'ExplosiveShellPickup',
+            boxPickupName:    'ExplosiveShellBoxPickup',
+            bundleAmt:        4,
+            boxAmt:           20,
+            singleSprite:     "XLS1A0",
+            bundleSprite:     "XLS4A0",
+            boxSprite:        "XLBXA0" //,
+            // numProjectiles:   1
+        ));
+
+        // 12ga Flare Shell
+        registerRoundType('12gaFlareShell', HDBLRoundType.create(
+            'HDFlareAmmo', 'HDB_FlareMissile',
+            // spentName:        'None',
+            // unspentName:      'None',
+            // fumbledName:      'None',
+            // casingName:       'None',
+            singlePickupName: 'HDFlareAmmo',
+            bundlePickupName: 'FlareShellPickup',
+            boxPickupName:    'FlareShellBoxPickup',
+            bundleAmt:        4,
+            boxAmt:           20,
+            singleSprite:     "FLARA0",
+            bundleSprite:     "FLR4A0",
+            boxSprite:        "BBOXA0" //,
+            // numProjectiles:   1
+        ));
+
+        // 12ga Less-Lethal Shell
+        registerRoundType('12gaLessLethalShell', HDBLRoundType.create(
+            'HDLLShellAmmo', 'HDB_00Rubber',
+            spentName:        'HDLLSpentShell',
+            // unspentName:      'None',
+            fumbledName:      'HDFumblingBirdshotShell',
+            casingName:       'LessLethalBrass',
+            singlePickupName: 'HDLLFumblingShell',
+            bundlePickupName: 'LLShellPickup',
+            boxPickupName:    'LLShellBoxPickup',
+            bundleAmt:        4,
+            boxAmt:           20,
+            singleSprite:     "LLS1A0",
+            bundleSprite:     "LLS4A0",
+            boxSprite:        "LLBXA0",
+            numProjectiles:   10
+        ));
+
+        // 12ga Slug
+        registerRoundType('12gaSlug', HDBLRoundType.create(
+            'HDSlugAmmo', 'HDB_Slug',
+            spentName:        'HDSpentSlug',
+            unspentName:      'HDUnSpentSlug',
+            fumbledName:      'HDFumblingSlug',
+            casingName:       'SlugBrass',
+            singlePickupName: 'HDFumblingSlug',
+            bundlePickupName: 'SlugPickup',
+            boxPickupName:    'SlugBoxPickup',
+            bundleAmt:        4,
+            boxAmt:           20,
+            singleSprite:     "SLG1A0",
+            bundleSprite:     "SLUGA0",
+            boxSprite:        "SLBXA0" //,
+            // numProjectiles:   1
+        ));
+
+        // Thunder Rocket
+        registerRoundType('ThunderRocket', HDBLRoundType.create(
+            'WAN_ThuRKTAmmo', 'WAN_ThuRKT',
+            // spentName:        'None',
+            // unspentName:      'None',
+            // fumbledName:      'None',
+            // casingName:       'None',
+            // singlePickupName: 'None',
+            // bundlePickupName: 'None',
+            // boxPickupName:    'None',
+            // bundleAmt:        -1,
+            // boxAmt:           -1,
+            singleSprite:     "THRKB0" //,
+            // bundleSprite:     "",
+            // boxSprite:        "",
+            // numProjectiles:   1
+        ));
+
+        // Tortoise Rocket
+        registerRoundType('TortoiseRocket', HDBLRoundType.create(
+            'WAN_TortRKTAmmo', 'WAN_TortRKT',
+            // spentName:        'None',
+            // unspentName:      'None',
+            // fumbledName:      'None',
+            // casingName:       'None',
+            // singlePickupName: 'None',
+            // bundlePickupName: 'None',
+            // boxPickupName:    'None',
+            // bundleAmt:        -1,
+            // boxAmt:           -1,
+            singleSprite:     "TRTRB0" //,
+            // bundleSprite:     "",
+            // boxSprite:        "",
+            // numProjectiles:   1
+        ));
+    }
+
+    override void NetworkProcess(ConsoleEvent e) {
+        Array<string> splitNames;
+        e.name.split(splitNames, ":");
+
+        // If we haven't been given a valid command, quit.
+        if (splitNames.size() < 2) return;
+
+        // If the player who emitted the event is not in game, quit.
+        if (!playerInGame[e.player]) return;
+        
+        // Get the PlayerPawn of the player who emitted the event.
+        let plr = players[e.player].mo;
+
+        // If that PlayerPawn doesn't exist, quit.
+        if (!plr) return;
+
+        // If we don't have one, log & quit.
+        if (!roundTypes.checkKey(splitNames[1])) {
+            HDBL.logWarn('HDBulletLib', "RoundType \'"..splitNames[1].."\' is not registered.");
+            return;
+        }
+
+        // Get the desired RoundType registered with this handler.
+        let roundType = roundTypes.get(splitNames[1]);
+
+        // If the desired RoundType is invalid, quit.
+        if (!roundType) return;
+
+        name eventName = splitNames[0];
+        switch (eventName) {
+            case 'HDBL_LogRoundType': {
+                console.printF(roundType.toString());
+                break;
+            }
+            case 'HDBL_FireRound': {
+
+                if (!(Class<Actor>)(roundType.projName)) {
+                    HDBL.logWarn('HDBulletLib', "RoundType \'"..splitNames[1].."\' has an invalid projName: \'"..roundType.projName.."\'.");
+                    break;
+                }
+
+                roundType.fireRound(
+                    plr,
+                    spread: e.isManual ? e.args[0] : 0,
+                    speedFactor: e.isManual ? e.args[1] : 0,
+                    amount: e.isManual ? e.args[2] : 1
+                );
+                
+                break;
+            }
+            case 'HDBL_EjectRoundSpent': {
+
+                if (!(Class<Actor>)(roundType.spentName)) {
+                    HDBL.logWarn('HDBulletLib', "RoundType \'"..splitNames[1].."\' has an invalid spentName: \'"..roundType.spentName.."\'.");
+                    break;
+                }
+
+                roundType.ejectRoundSpent(
+                    plr,
+                    e.args[0],
+                    ejectVel: (Actor.angleToVector(e.args[0], e.args[1]), 0)
+                );
+
+                break;
+            }
+            case 'HDBL_EjectRoundUnSpent': {
+
+                if (!(Class<Actor>)(roundType.unSpentName)) {
+                    HDBL.logWarn('HDBulletLib', "RoundType \'"..splitNames[1].."\' has an invalid unSpentName: \'"..roundType.unSpentName.."\'.");
+                    break;
+                }
+
+                roundType.ejectRoundUnSpent(
+                    plr,
+                    e.args[0],
+                    ejectVel: (Actor.angleToVector(e.args[0], e.args[1]), 0)
+                );
+
+                break;
+            }
+            case 'HDBL_EjectRoundFumbled': {
+
+                if (!(Class<Actor>)(roundType.fumbledName)) {
+                    HDBL.logWarn('HDBulletLib', "RoundType \'"..splitNames[1].."\' has an invalid fumbledName: \'"..roundType.fumbledName.."\'.");
+                    break;
+                }
+
+                roundType.ejectRoundFumbled(
+                    plr,
+                    e.args[0],
+                    ejectVel: (Actor.angleToVector(e.args[0], e.args[1]), 0)
+                );
+
+                break;
+            }
+            case 'HDBL_SpawnRoundAmmo': {
+
+                if (!(Class<Actor>)(roundType.ammoName)) {
+                    HDBL.logWarn('HDBulletLib', "RoundType \'"..splitNames[1].."\' has an invalid ammoName: \'"..roundType.ammoName.."\'.");
+                    break;
+                }
+
+                roundType.spawnAmmo(
+                    plr.pos + HDMath.getGunPos(plr),
+                    e.args[0]
+                );
+
+                break;
+            }
+            case 'HDBL_SpawnRoundSpent': {
+
+                if (!(Class<Actor>)(roundType.spentName)) {
+                    HDBL.logWarn('HDBulletLib', "RoundType \'"..splitNames[1].."\' has an invalid spentName: \'"..roundType.spentName.."\'.");
+                    break;
+                }
+
+                let max = max(1, e.args[0]);
+                for (let i = 0; i < max; i++) {
+                    Actor.spawn(
+                        roundType.spentName,
+                        plr.pos + HDMath.getGunPos(plr)
+                    );
+                }
+
+                break;
+            }
+            case 'HDBL_SpawnRoundUnSpent': {
+
+                if (!(Class<Actor>)(roundType.unSpentName)) {
+                    HDBL.logWarn('HDBulletLib', "RoundType \'"..splitNames[1].."\' has an invalid unSpentName: \'"..roundType.unSpentName.."\'.");
+                    break;
+                }
+
+                let max = max(1, e.args[0]);
+                for (let i = 0; i < max; i++) {
+                    let r = Actor.spawn(
+                        roundType.unSpentName,
+                        plr.pos + HDMath.getGunPos(plr)
+                    );
+                    r.target = plr;
+                }
+
+                break;
+            }
+            case 'HDBL_SpawnRoundFumbled': {
+
+                if (!(Class<Actor>)(roundType.fumbledName)) {
+                    HDBL.logWarn('HDBulletLib', "RoundType \'"..splitNames[1].."\' has an invalid fumbledName: \'"..roundType.fumbledName.."\'.");
+                    break;
+                }
+
+                let max = max(1, e.args[0]);
+                for (let i = 0; i < max; i++) {
+                    Actor.spawn(
+                        roundType.fumbledName,
+                        plr.pos + HDMath.getGunPos(plr)
+                    );
+                }
+
+                break;
+            }
+            case 'HDBL_SpawnRoundCasing': {
+
+                if (!(Class<Actor>)(roundType.casingName)) {
+                    HDBL.logWarn('HDBulletLib', "RoundType \'"..splitNames[1].."\' has an invalid casingName: \'"..roundType.casingName.."\'.");
+                    break;
+                }
+
+                let max = max(1, e.args[0]);
+                for (let i = 0; i < max; i++) {
+                    Actor.spawn(
+                        roundType.casingName,
+                        plr.pos + HDMath.getGunPos(plr)
+                    );
+                }
+
+                break;
+            }
+            default: {
+                break;
+            }
+        }
+    }
+
+    void registerRoundType(name roundName, HDBLRoundType roundType, bool replace = false) {
+
+        // If the round type is null, quit.
+        if (!roundType) return;
+
+        // If we already have something registered and we're not replacing it, quit.
+        if (roundTypes.checkKey(roundName) && !replace) return;
+
+        roundTypes.insert(roundName, roundType);
+    }
+}
